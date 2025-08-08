@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Belajar React</title>
+
+  <!-- Script Babel (untuk render jsx) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Script React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // ==== initial statement (bawaan react secara umum) ====
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+
+    // ==== components ====
+    function SimpleButton() {
+      const [display, setDisplay] = React.useState(0);
+
+      function handleMinusButton() {
+        setDisplay(display - 1);
+      }
+
+      function handlePlusButton() {
+        setDisplay(display + 1);
+      }
+
+      function handleResetButton() {
+        setDisplay(0);
+      }
+
+      return (
+        <>
+          <button style={{ display: 'inline' }} onClick={handleMinusButton}>-</button>
+          <p style={{ display: 'inline', marginLeft: '10px' }}>{display}</p>
+          <button style={{ display: 'inline', marginLeft: '10px' }} onClick={handlePlusButton}>+</button>
+          <button style={{ display: 'inline', marginLeft: '15px' }} onClick={handleResetButton}>Reset</button>
+        </>
+      );
+    }
+
+    // ==== untuk me-render jsx react ke div#root di body ====
+    root.render(<SimpleButton />);
+  </script>
+</body>
+
+</html>
