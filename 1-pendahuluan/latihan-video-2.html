@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Belajar React</title>
+
+  <!-- Script Babel (untuk render jsx) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Script React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // ==== initial statement (bawaan react secara umum) ====
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+
+    // ==== components ====
+    function SimpleButton() {
+      /*
+      // == versi tanpa destructuring ==
+      const displayState = React.useState(0);
+      const display = displayState[0];
+      const setDisplay = displayState[1];
+      */
+      const [display, setDisplay] = React.useState(0);
+
+      const DisableResetButton = display !== 'Done!';
+      const DisableOtherButton = display === 'Done!';
+
+      function handleMinusButton() {
+        if(display <= 0) {
+          setDisplay('Done!');
+        } else {
+          setDisplay(display - 1);
+        }
+      }
+
+      function handlePlusButton() {
+        if(display >= 10) {
+          setDisplay('Done!');
+        } else {
+          setDisplay(display + 1);
+        }
+      }
+
+      function handleResetButton() {
+        setDisplay(0);
+      }
+
+      return (
+        <>
+          <button 
+            style={{ display: 'inline' }} 
+            onClick={handleMinusButton}
+            disabled={DisableOtherButton}
+          >
+            -
+          </button>
+
+          <p 
+            style={{ display: 'inline', marginLeft: '10px' }}
+          >
+            {display}
+          </p>
+
+          <button 
+            style={{ display: 'inline', marginLeft: '10px' }} 
+            onClick={handlePlusButton}
+            disabled={DisableOtherButton}
+          >
+            +
+          </button>
+
+          <button 
+            style={{ display: 'inline', marginLeft: '15px' }} 
+            onClick={handleResetButton}
+            disabled={DisableResetButton}
+          >
+            Reset
+          </button>
+        </>
+      );
+    }
+
+    // ==== untuk me-render jsx react ke div#root di body ====
+    root.render(<SimpleButton />);
+  </script>
+</body>
+
+</html>
