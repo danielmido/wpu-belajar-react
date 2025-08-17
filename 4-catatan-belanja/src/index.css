@@ -152,6 +152,10 @@ button {
   font-weight: bold;
 }
 
+.button-tambah {
+  margin-left: 15px;
+}
+
 /* tablet */
 @media (max-width: 768px) {
   html {
